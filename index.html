@@ -96,23 +96,68 @@ transition:width .65s cubic-bezier(.34,1.3,.64,1),height .65s cubic-bezier(.34,1
 .rdraw{stroke-dasharray:1;stroke-dashoffset:1;animation:rdraw 6s cubic-bezier(.45,.1,.25,1) .3s forwards}
 @keyframes rdraw{to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){.rdraw{animation:none;stroke-dashoffset:0}}
+.chip.sm{padding:6px 12px;font-size:12px}
+.dclip{overflow:hidden}
+.iwrap{position:relative;flex:none}
+.flame{transform-origin:50% 100%;animation:flick .22s ease-in-out infinite alternate}
+@keyframes flick{from{transform:scale(1,1) skewX(-3deg)}to{transform:scale(.9,1.12) skewX(3deg)}}
+@keyframes sway{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(-7deg)}}
+.pulsegl{animation:gl 1.6s ease-in-out infinite alternate}@keyframes gl{from{opacity:.5}to{opacity:1}}
+.cf{animation:cf 2.2s ease-in-out infinite}.cf.c2{animation-delay:-.7s}.cf.c3{animation-delay:-1.3s}@keyframes cf{50%{transform:translateY(5px)}}
+.hw{display:inline-flex;gap:2px;align-items:center;height:12px;margin-right:6px;vertical-align:-1px}.hw i{width:2px;height:5px;border-radius:2px;background:currentColor;opacity:.65}
+.hw.buzz i{animation:hw .3s ease-in-out 2}@keyframes hw{50%{height:12px;opacity:1}}
+.island.hap{animation:hapring .55s ease-out}.orbit.hap{animation:hapring .55s ease-out}
+@keyframes hapring{0%{outline:2px solid rgba(26,85,255,.6);outline-offset:0}100%{outline:2px solid rgba(26,85,255,0);outline-offset:14px}}
+.script{font-family:Sacramento,'Snell Roundhand','Brush Script MT',cursive}
+.wr{stroke-dasharray:1;stroke-dashoffset:1}
+.go .wr{animation:wr var(--d) linear var(--t) forwards}
+
+@keyframes wr{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.wr{animation:none!important;stroke-dashoffset:0}.island.hap,.orbit.hap,.flame,.pulsegl,.cf,.f-christmas,.hw i{animation:none!important}}
+.stage{padding-top:62px}
+.owrap{position:relative;flex:none}
+.o-in{position:absolute;inset:0;display:none;place-items:center;pointer-events:none}
+.o-in svg{width:58%;height:auto;overflow:visible}
+.owrap[data-fest=diwali] .o-diwali,.owrap[data-fest=halloween] .o-halloween,.owrap[data-fest=christmas] .o-christmas,.owrap[data-fest=newyear] .o-newyear{display:grid}
+.o-hat{position:absolute;display:none;pointer-events:none;overflow:visible;z-index:3;left:50%;bottom:91%}
+.o-hat.f-christmas{width:62%;margin-left:-34%;transform:rotate(-9deg);transform-origin:50% 100%;animation:hsway 4s ease-in-out infinite}
+.o-hat.f-newyear{width:50%;margin-left:-26%;transform:rotate(9deg);transform-origin:50% 100%}
+.owrap[data-fest=christmas] .f-christmas,.owrap[data-fest=newyear] .f-newyear{display:block}
+@keyframes hsway{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(-4deg)}}
+.owrap[data-fest=diwali] .orbit{box-shadow:0 0 0 1px rgba(255,200,120,.75),inset 0 0 0 1px rgba(255,255,255,.2),inset 0 2px 4px rgba(255,255,255,.5),inset 0 -4px 10px rgba(0,0,0,.3),0 18px 36px -12px rgba(255,150,30,.75),0 10px 22px -10px rgba(0,0,0,.8)}
+@media (prefers-reduced-motion:reduce){.o-hat.f-christmas{animation:none}}
+.o-christmas svg,.o-newyear svg{width:100%}
+.sn{animation:snow var(--s,5s) linear var(--w,0s) infinite;transform-box:fill-box}
+@keyframes snow{0%{transform:translate(0,-10px);opacity:0}12%{opacity:.95}88%{opacity:.95}100%{transform:translate(var(--dx,3px),50px);opacity:0}}
+.cn{animation:conf var(--s,4s) linear var(--w,0s) infinite;transform-box:fill-box;transform-origin:center}
+@keyframes conf{0%{transform:translate(0,-10px) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translate(var(--dx,4px),50px) rotate(var(--r,360deg));opacity:0}}
+@media (prefers-reduced-motion:reduce){.sn,.cn{animation:none}}
+.cta{display:inline-flex;align-items:center;justify-content:center;padding:13px 24px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none;color:var(--ink);transition:transform .5s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.cta:hover{transform:translateY(-2px)}.cta:active{transform:scale(.95)}
+.cta.bg-\[\#0b1b3f\]{color:#fff}
+#curT button[aria-pressed=true]{background:rgba(255,255,255,.85);color:var(--ink)}
+.wp{position:relative;aspect-ratio:16/10;border-radius:18px;overflow:hidden;box-shadow:0 0 0 .5px rgba(214,220,232,.7),0 14px 30px -16px rgba(11,27,63,.5);transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.wp:hover{transform:scale(1.04)}.wp img{width:100%;height:100%;object-fit:cover;display:block}
+.wp span{position:absolute;left:10px;bottom:8px;font-size:11px;font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.45)}
+dialog#elig{border:0;padding:0;background:transparent;max-width:none;color:var(--ink);overflow:visible}
+dialog#elig::backdrop{background:rgba(11,27,63,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 /* FAQ */
 details.glass summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600}
 details.glass summary::-webkit-details-marker{display:none}
 details.glass .plus{transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
 details.glass.on .plus{transform:rotate(45deg)}
 details.glass .fc{overflow:hidden}
-details.glass::after{content:"";position:absolute;inset:-16px;z-index:-1;border-radius:34px;pointer-events:none;opacity:0;transform:scale(.86);
+.glowbox::after{content:"";position:absolute;inset:-16px;z-index:-1;border-radius:34px;pointer-events:none;opacity:0;transform:scale(.86);
 background:radial-gradient(55% 75% at 22% 30%,#1A55FF,transparent 72%),radial-gradient(55% 75% at 80% 72%,#E6C59E,transparent 72%),radial-gradient(40% 50% at 55% 50%,rgba(122,162,255,.8),transparent 70%);background-size:160% 160%;filter:blur(22px);
 transition:opacity .7s ease,transform .9s cubic-bezier(.34,1.56,.64,1)}
-details.glass.on::after{opacity:.6;transform:scale(1);animation:glowmorph 8s ease-in-out .9s infinite}
+.glowbox.on::after{opacity:.6;transform:scale(1);animation:glowmorph 8s ease-in-out .9s infinite}
 @keyframes glowmorph{0%,100%{background-position:0% 0%,100% 100%,50% 50%;border-radius:34px}50%{background-position:35% 45%,65% 55%,40% 60%;border-radius:46px 30px 42px 34px}}
 .ribbons svg{transform:translateY(var(--drag,0px));transition:transform .95s cubic-bezier(.34,1.56,.64,1);will-change:transform}
-@media (prefers-reduced-motion:reduce){details.glass::after{animation:none!important;transition:none}.ribbons svg{transition:none}}
+@media (prefers-reduced-motion:reduce){.glowbox::after{animation:none!important;transition:none}.ribbons svg{transition:none}}
 
 .grad{background:linear-gradient(100deg,#1A55FF 0%,#7c93d6 48%,#E6C59E 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 10px rgba(26,85,255,.22))}
 .card{transition:transform .5s cubic-bezier(.34,1.56,.64,1)}.card:hover{transform:translateY(-6px)}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s cubic-bezier(.34,1.3,.64,1)}.reveal.in{opacity:1;transform:none}
+.reveal{transform:translateY(24px);transition:transform .8s cubic-bezier(.34,1.3,.64,1)}.reveal.in{transform:none}
 @media (prefers-reduced-motion:reduce){.blob,.eq i,.cat,.zz{animation:none}.reveal{opacity:1;transform:none}}
 </style>
 </head>
@@ -120,12 +165,14 @@ details.glass.on::after{opacity:.6;transform:scale(1);animation:glowmorph 8s eas
 <div class="mesh" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div></div>
 
 <div class="ribbons" aria-hidden="true"><svg viewBox="0 0 1440 3800" preserveAspectRatio="xMidYMin slice"><defs><linearGradient id="rg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="3800"><stop offset="0" stop-color="#0a3bd0"/><stop offset=".3" stop-color="#1A55FF"/><stop offset=".55" stop-color="#7aa2ff"/><stop offset=".78" stop-color="#E6C59E"/><stop offset="1" stop-color="#1A55FF"/></linearGradient><linearGradient id="rg2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="3800"><stop offset="0" stop-color="#6f95ff"/><stop offset=".55" stop-color="#d4e1ff"/><stop offset=".8" stop-color="#fff3e0"/><stop offset="1" stop-color="#6f95ff"/></linearGradient><filter id="rb"><feGaussianBlur stdDeviation="1.4"/></filter></defs><g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#rb)"><path class="rdraw" pathLength="1" d="M-250 520 C-50 180 450 120 760 330 C1020 500 1300 430 1330 700 C1360 980 900 1040 700 880 C500 720 620 520 840 600 C1080 680 1180 980 900 1200 C620 1420 160 1260 110 1500 C60 1740 500 1800 760 1640 C1020 1480 1380 1560 1340 1900 C1300 2180 820 2160 680 2000 C540 1840 700 1700 880 1800 C1100 1900 1100 2300 860 2480 C620 2660 130 2540 90 2800 C50 3040 520 3140 800 3000 C1080 2860 1400 3000 1330 3300 C1260 3560 700 3560 560 3400 C420 3260 560 3120 720 3200 C900 3280 1000 3560 800 3760 C640 3900 300 3850 -250 3800" stroke="url(#rg)" stroke-width="96"/><path class="rdraw" pathLength="1" d="M-250 520 C-50 180 450 120 760 330 C1020 500 1300 430 1330 700 C1360 980 900 1040 700 880 C500 720 620 520 840 600 C1080 680 1180 980 900 1200 C620 1420 160 1260 110 1500 C60 1740 500 1800 760 1640 C1020 1480 1380 1560 1340 1900 C1300 2180 820 2160 680 2000 C540 1840 700 1700 880 1800 C1100 1900 1100 2300 860 2480 C620 2660 130 2540 90 2800 C50 3040 520 3140 800 3000 C1080 2860 1400 3000 1330 3300 C1260 3560 700 3560 560 3400 C420 3260 560 3120 720 3200 C900 3280 1000 3560 800 3760 C640 3900 300 3850 -250 3800" stroke="url(#rg2)" stroke-width="30" stroke-opacity=".5" transform="translate(-4,-14)"/><path class="rdraw" pathLength="1" d="M-250 520 C-50 180 450 120 760 330 C1020 500 1300 430 1330 700 C1360 980 900 1040 700 880 C500 720 620 520 840 600 C1080 680 1180 980 900 1200 C620 1420 160 1260 110 1500 C60 1740 500 1800 760 1640 C1020 1480 1380 1560 1340 1900 C1300 2180 820 2160 680 2000 C540 1840 700 1700 880 1800 C1100 1900 1100 2300 860 2480 C620 2660 130 2540 90 2800 C50 3040 520 3140 800 3000 C1080 2860 1400 3000 1330 3300 C1260 3560 700 3560 560 3400 C420 3260 560 3120 720 3200 C900 3280 1000 3560 800 3760 C640 3900 300 3850 -250 3800" stroke="#fff" stroke-width="5" stroke-opacity=".6" transform="translate(-10,-30)"/></g></svg></div>
+<label id="hapl" aria-hidden="true" style="position:fixed;left:-200px;top:0;width:1px;height:1px;overflow:hidden"><input type="checkbox" switch tabindex="-1"></label>
 <!-- NAV -->
 <header class="fixed left-0 right-0 z-50 flex justify-center px-4" style="top:calc(env(safe-area-inset-top,0px) + 14px)">
   <nav class="glass pill flex items-center gap-5 px-5 py-2.5 text-sm">
     <span class="font-bold tracking-tight">Deck<span class="text-[#1A55FF]">OS</span></span>
     <a href="#preview" class="mute hover:text-[#0b1b3f] hidden sm:inline">Preview</a>
     <a href="#features" class="mute hover:text-[#0b1b3f] hidden sm:inline">Features</a>
+    <a href="#premium" class="mute hover:text-[#0b1b3f] hidden sm:inline">Premium</a>
     <a href="#specs" class="mute hover:text-[#0b1b3f] hidden sm:inline">Specs</a>
     <a href="#download" class="pill bg-[#0b1b3f] text-white font-semibold px-4 py-1.5 transition hover:scale-105 active:scale-95">Download</a>
   </nav>
@@ -135,7 +182,7 @@ details.glass.on::after{opacity:.6;transform:scale(1);animation:glowmorph 8s eas
 
 <!-- HERO -->
 <section class="text-center">
-  <div class="glass pill inline-flex items-center gap-2 px-4 py-1.5 text-xs mute mb-8"><span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]"></span> Version 6.2 · Actively in development</div>
+  <div class="glass pill inline-flex items-center gap-2 px-4 py-1.5 text-xs mute mb-8"><span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]"></span> Version 7.1 · Actively in development</div>
   <div class="flex justify-center"><div class="glass rounded-[48px] px-8 sm:px-14 py-8 sm:py-12"><h1 class="grad text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.02] pb-2">Your workflow,<br>liquefied.</h1></div></div>
   <p class="mute text-lg sm:text-xl max-w-2xl mx-auto mt-7 leading-relaxed">Bring the magic of fluid, contextual micro-interactions directly to your desktop. Seamless notifications, quick-access apps, and system vitals bound together in a beautiful, adaptive glass canvas.</p>
 
@@ -144,17 +191,17 @@ details.glass.on::after{opacity:.6;transform:scale(1);animation:glowmorph 8s eas
     <a href="#download" class="pod glass mac" aria-label="Download for macOS">
       <span class="glowbg"></span>
       <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg></span>
-      <span><span class="block font-semibold text-base">Download for macOS</span><span class="block text-xs mute mt-0.5">Apple Silicon &amp; Intel • v6.2</span></span>
+      <span><span class="block font-semibold text-base">Download for macOS</span><span class="block text-xs mute mt-0.5">Apple Silicon &amp; Intel • v7.1</span></span>
     </a>
     <a href="#download" class="pod glass win" aria-label="Download for Windows">
       <span class="glowbg"></span>
       <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.4l7.6-1.05v7.15H3zM11.6 4.2L21 3v8.5h-9.4zM3 12.5h7.6v7.15L3 18.6zM11.6 12.5H21V21l-9.4-1.2z"/></svg></span>
-      <span><span class="block font-semibold text-base">Download for Windows</span><span class="block text-xs mute mt-0.5">Windows 11/10 x64 • v6.2</span></span>
+      <span><span class="block font-semibold text-base">Download for Windows</span><span class="block text-xs mute mt-0.5">Windows 11/10 x64 • v7.1</span></span>
     </a>
     <a href="#download" class="pod glass chr" aria-label="Get ChromeOS Extension">
       <span class="glowbg"></span>
       <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><circle cx="12" cy="12" r="3.6"/><path d="M12 8.4h8.6M8.9 13.8l-4.3-7.4M15.1 13.8l-4.3 7.4"/></svg></span>
-      <span><span class="block font-semibold text-base">Get ChromeOS Extension</span><span class="block text-xs mute mt-0.5">Chromium Web Store • v6.2</span></span>
+      <span><span class="block font-semibold text-base">Get ChromeOS Extension</span><span class="block text-xs mute mt-0.5">Chromium Web Store • v7.1</span></span>
     </a>
   </div>
 </section>
@@ -173,8 +220,15 @@ details.glass.on::after{opacity:.6;transform:scale(1);animation:glowmorph 8s eas
       <button class="chip" data-s="timer" aria-pressed="false">Focus Timer</button>
       <button class="chip" data-s="dock" aria-pressed="false">App Dock</button>
     </div>
+    <div class="flex flex-wrap justify-center items-center gap-2 mt-4" id="fest">
+      <span class="text-xs mute mr-1">Festive touch</span>
+      <button class="chip sm" data-f="auto" aria-pressed="true">Auto</button><button class="chip sm" data-f="diwali" aria-pressed="false">Diwali</button><button class="chip sm" data-f="christmas" aria-pressed="false">Christmas</button><button class="chip sm" data-f="newyear" aria-pressed="false">New Year</button><button class="chip sm" data-f="halloween" aria-pressed="false">Halloween</button><button class="chip sm" data-f="off" aria-pressed="false">Off</button>
+      <button class="chip sm ml-2" id="hapT" aria-pressed="true" title="Toggle haptic feedback"><span class="hw" id="hw"><i></i><i></i><i></i></span>Live haptics</button>
+    </div>
+    <p class="text-xs mute text-center mt-2" id="festTxt"></p><p class="text-xs mute text-center mt-1" id="hapTxt"></p>
     <div class="stage">
       <div class="icol">
+      <div class="iwrap">
       <div class="island" id="island" data-s="idle" role="button" tabindex="0" aria-label="Dynamic island preview">
         <div class="v-idle justify-between" style="padding:0 16px">
           <span class="relative flex items-center"><svg class="cat" width="26" height="15" viewBox="0 0 16 9" shape-rendering="crispEdges" aria-label="Sleeping cat"><path fill="#f4a261" d="M0 0h2v2h12V0h2v9H0z"/><rect x="1.7" y="4.2" width="3.3" height="1.2" fill="#1a0f08"/><rect x="11" y="4.2" width="3.3" height="1.2" fill="#1a0f08"/><rect x="6.9" y="6" width="2.2" height="1" fill="#f472b6"/></svg><span class="zz">z</span></span>
@@ -200,11 +254,12 @@ details.glass.on::after{opacity:.6;transform:scale(1);animation:glowmorph 8s eas
         <div class="v-dock justify-center gap-[36px]" style="padding:0 20px"><span class="app" style="--c1:#1A55FF" title="Chrome"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 8.6h8.4M9 13.7l-4.2-7.3M15 13.7l-4.2 7.3"/></svg></span><span class="app" style="--c1:#E6C59E" title="Docs"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><span class="app" style="--c1:#1A55FF" title="Meet"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="12" height="10" rx="2.5"/><path d="M15 11l6-3v8l-6-3"/></svg></span></div>
       </div>
       </div>
-      <div class="orbit" id="orbit" role="img" aria-label="Sub-Task Orbit"><span class="mesh"><i class="m1"></i><i class="m2"></i><i class="m3"></i></span></div>
+      </div>
+      <div class="owrap"><div class="orbit" id="orbit" role="img" aria-label="Sub-Task Orbit"><span class="mesh"><i class="m1"></i><i class="m2"></i><i class="m3"></i></span><span class="o-in o-diwali"><svg viewBox="0 0 44 40" fill="none"><defs><radialGradient id="dg"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ff9a1f" stop-opacity="0"/></radialGradient><linearGradient id="df" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff7a00"/><stop offset="1" stop-color="#fff1a8"/></linearGradient><linearGradient id="db" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2793a"/><stop offset="1" stop-color="#8a3512"/></linearGradient></defs><circle class="pulsegl" cx="22" cy="13" r="15" fill="url(#dg)"/><path class="flame" d="M22 3c5.5 6.5 5.5 12 0 16.5C16.5 15 16.5 9.5 22 3z" fill="url(#df)"/><path class="flame" d="M22 10c2.4 3 2.4 5.5 0 7.5-2.4-2-2.4-4.5 0-7.5z" fill="#fff6c9"/><path d="M5 22h34c0 9-7 15-17 15S5 31 5 22z" fill="url(#db)"/><ellipse cx="22" cy="22" rx="17" ry="3.6" fill="#f3a43b"/><ellipse cx="22" cy="21.6" rx="12" ry="1.8" fill="#b4531e"/><circle cx="14" cy="30" r="1.2" fill="#ffd27a"/><circle cx="22" cy="32.5" r="1.2" fill="#ffd27a"/><circle cx="30" cy="30" r="1.2" fill="#ffd27a"/></svg></span><span class="o-in o-halloween"><svg viewBox="0 0 40 38"><path d="M18 7c0-3 3-5 5-5 0 2-1 4-2 5z" fill="#3f7d2a"/><ellipse cx="12" cy="22" rx="9" ry="13" fill="#f77f1c"/><ellipse cx="28" cy="22" rx="9" ry="13" fill="#f77f1c"/><ellipse cx="20" cy="22" rx="9" ry="14" fill="#ff9330"/><path class="pulsegl" d="M12 19l3 5H9zM28 19l3 5h-6zM13 29q7 5 14 0l-2-2-3 2-2-2-3 2z" fill="#3a1500"/></svg></span><span class="o-in o-christmas"><svg viewBox="0 0 40 40"><circle class="sn" style="--s:4.6s;--w:-0.2s;--dx:-3.5px" cx="1.6" cy="0" r="1.2" fill="#fff"/><circle class="sn" style="--s:4.0s;--w:-0.3s;--dx:2.3px" cx="3.3" cy="0" r="2.2" fill="#fff"/><circle class="sn" style="--s:3.6s;--w:-2.0s;--dx:-4.5px" cx="5.8" cy="0" r="1.8" fill="#fff"/><circle class="sn" style="--s:5.1s;--w:-2.0s;--dx:-2.2px" cx="9.4" cy="0" r="0.9" fill="#fff"/><circle class="sn" style="--s:4.7s;--w:-2.5s;--dx:4.2px" cx="12.5" cy="0" r="1.5" fill="#fff"/><circle class="sn" style="--s:5.1s;--w:-3.3s;--dx:2.4px" cx="14.4" cy="0" r="0.9" fill="#fff"/><circle class="sn" style="--s:3.6s;--w:-0.7s;--dx:5.1px" cx="16.9" cy="0" r="2.2" fill="#fff"/><circle class="sn" style="--s:4.5s;--w:-1.1s;--dx:-4.8px" cx="18.7" cy="0" r="1.8" fill="#fff"/><circle class="sn" style="--s:4.3s;--w:-2.1s;--dx:4.9px" cx="20.6" cy="0" r="2.2" fill="#fff"/><circle class="sn" style="--s:3.8s;--w:-1.6s;--dx:2.6px" cx="23.1" cy="0" r="0.9" fill="#fff"/><circle class="sn" style="--s:6.3s;--w:-0.5s;--dx:3.4px" cx="26.0" cy="0" r="0.9" fill="#fff"/><circle class="sn" style="--s:5.1s;--w:-2.3s;--dx:-5.8px" cx="28.0" cy="0" r="1.8" fill="#fff"/><circle class="sn" style="--s:3.6s;--w:-2.5s;--dx:3.1px" cx="30.7" cy="0" r="0.9" fill="#fff"/><circle class="sn" style="--s:3.5s;--w:-1.6s;--dx:-4.4px" cx="32.9" cy="0" r="1.5" fill="#fff"/><circle class="sn" style="--s:5.7s;--w:-0.7s;--dx:-3.6px" cx="35.6" cy="0" r="1.2" fill="#fff"/><circle class="sn" style="--s:3.6s;--w:-1.6s;--dx:5.5px" cx="39.0" cy="0" r="1.8" fill="#fff"/></svg></span><span class="o-in o-newyear"><svg viewBox="0 0 40 40"><rect class="cn" style="--s:3.7s;--w:-1.3s;--dx:7.8px;--r:-360deg" x="2.8" y="0" width="3.0" height="1.2" rx=".4" fill="#E6C59E"/><rect class="cn" style="--s:3.9s;--w:-2.3s;--dx:4.4px;--r:-360deg" x="4.0" y="0" width="2.1" height="1.2" rx=".4" fill="#fff"/><rect class="cn" style="--s:3.1s;--w:-2.7s;--dx:-5.3px;--r:540deg" x="7.6" y="0" width="2.7" height="1.3" rx=".4" fill="#fff"/><rect class="cn" style="--s:2.9s;--w:-0.2s;--dx:-5.2px;--r:-540deg" x="10.1" y="0" width="1.9" height="1.5" rx=".4" fill="#f472b6"/><rect class="cn" style="--s:4.0s;--w:-3.8s;--dx:-3.4px;--r:-360deg" x="13.3" y="0" width="1.9" height="1.5" rx=".4" fill="#fbbf24"/><rect class="cn" style="--s:4.1s;--w:-1.9s;--dx:-7.2px;--r:540deg" x="15.5" y="0" width="2.7" height="1.8" rx=".4" fill="#fff"/><rect class="cn" style="--s:3.6s;--w:-1.0s;--dx:-5.6px;--r:-360deg" x="18.6" y="0" width="1.9" height="1.1" rx=".4" fill="#fbbf24"/><rect class="cn" style="--s:4.5s;--w:-1.3s;--dx:-6.5px;--r:360deg" x="21.1" y="0" width="2.8" height="1.7" rx=".4" fill="#fbbf24"/><rect class="cn" style="--s:4.0s;--w:-3.1s;--dx:6.2px;--r:-360deg" x="23.8" y="0" width="2.0" height="1.6" rx=".4" fill="#1A55FF"/><rect class="cn" style="--s:3.9s;--w:-1.4s;--dx:-7.9px;--r:360deg" x="27.7" y="0" width="2.8" height="1.2" rx=".4" fill="#fff"/><rect class="cn" style="--s:3.8s;--w:-3.6s;--dx:7.8px;--r:360deg" x="29.1" y="0" width="2.8" height="1.8" rx=".4" fill="#E6C59E"/><rect class="cn" style="--s:3.2s;--w:-2.0s;--dx:-5.4px;--r:360deg" x="31.8" y="0" width="2.1" height="1.2" rx=".4" fill="#7aa2ff"/><rect class="cn" style="--s:4.5s;--w:-3.4s;--dx:7.4px;--r:540deg" x="34.2" y="0" width="2.7" height="1.7" rx=".4" fill="#7aa2ff"/><rect class="cn" style="--s:3.7s;--w:-1.5s;--dx:-6.6px;--r:-360deg" x="37.6" y="0" width="2.9" height="1.8" rx=".4" fill="#1A55FF"/></svg></span></div><svg class="o-hat f-christmas" viewBox="0 0 44 40"><path d="M5 31C8 15 19 5 33 6c-3 7-1 16 8 24z" fill="#e5242f"/><path d="M5 31C8 15 19 5 33 6" fill="none" stroke="#ff7a82" stroke-width="2" stroke-linecap="round" opacity=".6"/><rect x="2" y="29" width="40" height="8" rx="4" fill="#fff"/><circle cx="34" cy="7" r="5" fill="#fff"/></svg><svg class="o-hat f-newyear" viewBox="0 0 40 44"><defs><linearGradient id="ph" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1A55FF"/><stop offset="1" stop-color="#7aa2ff"/></linearGradient></defs><path d="M20 6L35 40H5z" fill="url(#ph)"/><path d="M13 24h14M9 33h22" stroke="#E6C59E" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="5" r="4.5" fill="#E6C59E"/></svg></div>
     </div>
     <div class="text-center mt-8">
       <div class="glass dtab" id="dtab" role="tablist"><button data-d="island" aria-selected="true">The Island</button><button data-d="orbit" aria-selected="false">Sub-Task Orbit</button></div>
-      <p class="mute max-w-xl mx-auto mt-5 leading-relaxed" id="dtxt" aria-live="polite"></p>
+      <div class="glass glowbox dbox rounded-3xl max-w-xl mx-auto mt-5" id="dbox"><div class="dclip" id="dclip"><div class="px-6 py-5"><p class="mute leading-relaxed" id="dtxt" aria-live="polite"></p></div></div></div>
     </div>
   </div>
 </section>
@@ -235,10 +290,62 @@ details.glass.on::after{opacity:.6;transform:scale(1);animation:glowmorph 8s eas
       <div class="grid md:grid-cols-3 gap-8 items-center">
         <div><h3 class="text-xl font-semibold">Focus, Clips &amp; Notes</h3><p class="mute mt-2 leading-relaxed">Everything you reach for mid-task, built into the same pill.</p></div>
         <ul class="mute text-sm leading-relaxed space-y-1.5"><li><b>Focus:</b> 15, 25 or 45 minute sessions with a 5 minute break</li><li><b>Timer &amp; Stopwatch:</b> scroll-to-set timer, lap-ready stopwatch</li></ul>
-        <ul class="mute text-sm leading-relaxed space-y-1.5"><li><b>Clips:</b> your clipboard history, one tap to add or clear</li><li><b>Notes:</b> a scratchpad that never leaves your device</li></ul>
+        <ul class="mute text-sm leading-relaxed space-y-1.5"><li><b>Clips:</b> your clipboard history, one tap to add or clear</li><li><b>Notes:</b> a scratchpad that never leaves your device</li><li><b>Live haptics:</b> a tiny tap you can feel as the island morphs</li><li><b>Festive touch:</b> a diya for Diwali, a Santa hat for Christmas</li></ul>
       </div>
     </article>
   </div>
+</section>
+
+<!-- PREMIUM -->
+<section id="premium" class="mt-28">
+  <div class="text-center reveal">
+    <div class="glass pill inline-flex items-center gap-2 px-4 py-1.5 text-xs mute mb-5">★ Premium · one-time payment, no subscription</div>
+    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight">Make your island yours.</h2>
+    <p class="mute mt-3 max-w-xl mx-auto leading-relaxed">Three pets and ten wallpapers, for one small payment.</p>
+  </div>
+  <div class="grid lg:grid-cols-5 gap-5 mt-12">
+    <article class="glass glowbox on rounded-[32px] p-8 lg:col-span-3 reveal">
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div><h3 class="text-xl font-semibold">Dynamic Deck Premium</h3><p class="mute text-sm mt-1">Pay once. Keep it for good.</p></div>
+        <div class="glass dtab" id="curT"><button data-c="INR" aria-pressed="false">₹ INR</button><button data-c="USD" aria-pressed="false">$ USD</button></div>
+      </div>
+      <div class="mt-6 flex items-end gap-3"><span class="text-6xl font-extrabold tracking-tight tnum" id="price">₹99</span><span class="mute pb-2">one-time payment</span></div>
+      <div class="glass rounded-2xl px-4 py-3 mt-6 text-sm"><b>First 100 members get Premium free.</b>
+        <div id="spotsBar" hidden class="mt-3"><div class="h-2 rounded-full bg-[#0b1b3f]/10 overflow-hidden"><div id="spotsFill" class="h-full rounded-full" style="background:linear-gradient(90deg,#1A55FF,#E6C59E);width:0%"></div></div><p id="spotsTxt" class="mute text-xs mt-2"></p></div></div>
+      <ul class="mt-6 space-y-3 text-sm leading-relaxed">
+        <li class="flex gap-3"><svg class="shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A55FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span><b>3 pets</b> for your island: a standard cat, a dog and a dinosaur</span></li>
+        <li class="flex gap-3"><svg class="shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A55FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span><b>10 standard wallpapers</b></span></li>
+        <li class="flex gap-3"><svg class="shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A55FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>One payment, no subscription</span></li>
+      </ul>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a id="buy" class="cta bg-[#0b1b3f] text-white" href="#premium">Get Premium</a>
+        <button id="eligBtn" class="cta glass" type="button">Check free eligibility</button>
+      </div>
+    </article>
+    <article class="glass rounded-[32px] p-8 lg:col-span-2 reveal flex flex-col" style="transition-delay:.1s">
+      <span class="text-xs font-bold tracking-wide text-[#1A55FF]">DYNAMIC DECK PLUS</span>
+      <h3 class="text-xl font-semibold mt-2">50+ wallpapers</h3>
+      <p class="mute text-sm mt-2 leading-relaxed">Everything in Premium, plus a library of more than 50 wallpapers with Dynamic Deck Plus.</p>
+      <div class="mt-6 grid grid-cols-3 gap-2" id="plusTiles"></div>
+      <div class="mt-auto pt-8"><span class="cta glass opacity-70 cursor-default">Coming soon</span></div>
+    </article>
+  </div>
+  <h3 class="text-2xl font-bold tracking-tight text-center mt-20 reveal">Meet your pets</h3>
+  <div class="grid sm:grid-cols-3 gap-5 mt-8">
+    <article class="glass card rounded-[28px] p-6 text-center reveal"><div class="mx-auto flex items-center justify-between rounded-[22px] bg-[#050505] px-5 py-3 w-[190px]" style="box-shadow:0 0 0 .5px rgba(214,220,232,.5),0 18px 36px -14px rgba(0,0,0,.7)"><svg class="cat" style="animation-delay:0s" width="54" height="31" viewBox="0 0 14 8" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="0" width="2" height="1" fill="#f4a261"/><rect x="10" y="0" width="2" height="1" fill="#f4a261"/><rect x="2" y="1" width="3" height="1" fill="#f4a261"/><rect x="9" y="1" width="3" height="1" fill="#f4a261"/><rect x="1" y="2" width="12" height="1" fill="#f4a261"/><rect x="1" y="3" width="12" height="1" fill="#f4a261"/><rect x="1" y="4" width="2" height="1" fill="#f4a261"/><rect x="3" y="4" width="2" height="1" fill="#1a0f08"/><rect x="5" y="4" width="4" height="1" fill="#f4a261"/><rect x="9" y="4" width="2" height="1" fill="#1a0f08"/><rect x="11" y="4" width="2" height="1" fill="#f4a261"/><rect x="1" y="5" width="12" height="1" fill="#f4a261"/><rect x="1" y="6" width="5" height="1" fill="#f4a261"/><rect x="6" y="6" width="2" height="1" fill="#f472b6"/><rect x="8" y="6" width="5" height="1" fill="#f4a261"/><rect x="2" y="7" width="10" height="1" fill="#f4a261"/></svg><span class="dot"></span></div><h4 class="font-semibold mt-5">Standard cat</h4><p class="mute text-sm mt-1 leading-relaxed">Curls up and naps on your island.</p></article>
+    <article class="glass card rounded-[28px] p-6 text-center reveal"><div class="mx-auto flex items-center justify-between rounded-[22px] bg-[#050505] px-5 py-3 w-[190px]" style="box-shadow:0 0 0 .5px rgba(214,220,232,.5),0 18px 36px -14px rgba(0,0,0,.7)"><svg class="cat" style="animation-delay:-1s" width="54" height="42" viewBox="0 0 14 11" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="0" width="2" height="1" fill="#7a4a24"/><rect x="10" y="0" width="2" height="1" fill="#7a4a24"/><rect x="1" y="1" width="4" height="1" fill="#7a4a24"/><rect x="9" y="1" width="4" height="1" fill="#7a4a24"/><rect x="1" y="2" width="4" height="1" fill="#7a4a24"/><rect x="5" y="2" width="4" height="1" fill="#d19a5b"/><rect x="9" y="2" width="4" height="1" fill="#7a4a24"/><rect x="1" y="3" width="3" height="1" fill="#7a4a24"/><rect x="4" y="3" width="6" height="1" fill="#d19a5b"/><rect x="10" y="3" width="3" height="1" fill="#7a4a24"/><rect x="1" y="4" width="2" height="1" fill="#7a4a24"/><rect x="3" y="4" width="8" height="1" fill="#d19a5b"/><rect x="11" y="4" width="2" height="1" fill="#7a4a24"/><rect x="2" y="5" width="1" height="1" fill="#7a4a24"/><rect x="3" y="5" width="1" height="1" fill="#d19a5b"/><rect x="4" y="5" width="2" height="1" fill="#1a0f08"/><rect x="6" y="5" width="2" height="1" fill="#d19a5b"/><rect x="8" y="5" width="2" height="1" fill="#1a0f08"/><rect x="10" y="5" width="1" height="1" fill="#d19a5b"/><rect x="11" y="5" width="1" height="1" fill="#7a4a24"/><rect x="2" y="6" width="10" height="1" fill="#d19a5b"/><rect x="2" y="7" width="4" height="1" fill="#d19a5b"/><rect x="6" y="7" width="2" height="1" fill="#fff4e6"/><rect x="8" y="7" width="4" height="1" fill="#d19a5b"/><rect x="2" y="8" width="3" height="1" fill="#d19a5b"/><rect x="5" y="8" width="1" height="1" fill="#fff4e6"/><rect x="6" y="8" width="2" height="1" fill="#1a0f08"/><rect x="8" y="8" width="1" height="1" fill="#fff4e6"/><rect x="9" y="8" width="3" height="1" fill="#d19a5b"/><rect x="3" y="9" width="3" height="1" fill="#d19a5b"/><rect x="6" y="9" width="2" height="1" fill="#fff4e6"/><rect x="8" y="9" width="3" height="1" fill="#d19a5b"/><rect x="4" y="10" width="6" height="1" fill="#d19a5b"/></svg><span class="dot"></span></div><h4 class="font-semibold mt-5">Dog</h4><p class="mute text-sm mt-1 leading-relaxed">Keeps you company in the corner.</p></article>
+    <article class="glass card rounded-[28px] p-6 text-center reveal"><div class="mx-auto flex items-center justify-between rounded-[22px] bg-[#050505] px-5 py-3 w-[190px]" style="box-shadow:0 0 0 .5px rgba(214,220,232,.5),0 18px 36px -14px rgba(0,0,0,.7)"><svg class="cat" style="animation-delay:-2s" width="54" height="39" viewBox="0 0 14 10" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="1" height="1" fill="#1f8a57"/><rect x="5" y="0" width="1" height="1" fill="#1f8a57"/><rect x="7" y="0" width="1" height="1" fill="#1f8a57"/><rect x="9" y="0" width="1" height="1" fill="#1f8a57"/><rect x="3" y="1" width="8" height="1" fill="#3fbf7f"/><rect x="2" y="2" width="10" height="1" fill="#3fbf7f"/><rect x="1" y="3" width="2" height="1" fill="#3fbf7f"/><rect x="3" y="3" width="2" height="1" fill="#1a0f08"/><rect x="5" y="3" width="4" height="1" fill="#3fbf7f"/><rect x="9" y="3" width="2" height="1" fill="#1a0f08"/><rect x="11" y="3" width="2" height="1" fill="#3fbf7f"/><rect x="1" y="4" width="12" height="1" fill="#3fbf7f"/><rect x="1" y="5" width="12" height="1" fill="#3fbf7f"/><rect x="1" y="6" width="2" height="1" fill="#3fbf7f"/><rect x="3" y="6" width="8" height="1" fill="#a7f0c4"/><rect x="11" y="6" width="2" height="1" fill="#3fbf7f"/><rect x="1" y="7" width="1" height="1" fill="#3fbf7f"/><rect x="2" y="7" width="2" height="1" fill="#a7f0c4"/><rect x="4" y="7" width="1" height="1" fill="#fff4e6"/><rect x="5" y="7" width="4" height="1" fill="#a7f0c4"/><rect x="9" y="7" width="1" height="1" fill="#fff4e6"/><rect x="10" y="7" width="2" height="1" fill="#a7f0c4"/><rect x="12" y="7" width="1" height="1" fill="#3fbf7f"/><rect x="2" y="8" width="10" height="1" fill="#3fbf7f"/><rect x="3" y="9" width="8" height="1" fill="#3fbf7f"/></svg><span class="dot"></span></div><h4 class="font-semibold mt-5">Dinosaur</h4><p class="mute text-sm mt-1 leading-relaxed">Small, green and very loyal.</p></article>
+  </div>
+  <h3 class="text-2xl font-bold tracking-tight text-center mt-20 reveal">10 standard wallpapers</h3>
+  <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-8" id="wps"></div>
+  <p class="mute text-sm text-center mt-5">Want more? Dynamic Deck Plus adds 50+ wallpapers.</p>
+  <dialog id="elig"><form method="dialog" class="glass rounded-[28px] p-7 w-[min(92vw,420px)]" id="eligForm">
+    <h3 class="text-lg font-semibold">Check free eligibility</h3>
+    <p class="mute text-sm mt-2 leading-relaxed">The first 100 members get Premium free. Enter your email to see if you are one of them.</p>
+    <input id="eligEmail" type="email" required placeholder="you@example.com" autocomplete="email" class="w-full mt-4 rounded-full bg-white/70 px-4 py-3 text-sm outline-none border border-[#0b1b3f]/15 focus:border-[#1A55FF]">
+    <p id="eligRes" aria-live="polite" class="text-sm mt-3 leading-relaxed"></p>
+    <div class="mt-5 flex gap-3 justify-end"><button type="button" class="cta glass" id="eligClose">Close</button><button type="submit" class="cta bg-[#0b1b3f] text-white">Check</button></div>
+  </form></dialog>
 </section>
 
 <!-- SPECS & FAQ -->
@@ -255,19 +362,19 @@ details.glass.on::after{opacity:.6;transform:scale(1);animation:glowmorph 8s eas
   </div>
   <div class="space-y-4 reveal">
     <h2 class="text-2xl font-bold tracking-tight px-2">Good to know</h2>
-    <details class="glass rounded-3xl p-5 on" open>
+    <details class="glass glowbox rounded-3xl p-5 on" open>
       <summary>Will it slow my machine down? <span class="plus text-xl mute">+</span></summary>
       <div class="fc"><p class="mute text-sm leading-relaxed mt-3">No. DeckOS idles at under 1% CPU and about 60 MB of memory. Animations run on the GPU compositor, and the island pauses rendering whenever a full-screen app takes over.</p></div>
     </details>
-    <details class="glass rounded-3xl p-5">
+    <details class="glass glowbox rounded-3xl p-5">
       <summary>What data does it collect? <span class="plus text-xl mute">+</span></summary>
       <div class="fc"><p class="mute text-sm leading-relaxed mt-3">None leaves your device. Vitals, clipboard history, and media state are processed locally, there are no accounts, and clipboard entries are stored encrypted and can be wiped with one click.</p></div>
     </details>
-    <details class="glass rounded-3xl p-5">
+    <details class="glass glowbox rounded-3xl p-5">
       <summary>Is it free? <span class="plus text-xl mute">+</span></summary>
       <div class="fc"><p class="mute text-sm leading-relaxed mt-3">The core island, dock, and vitals are free. Custom themes and unlimited clipboard history are part of an optional Pro upgrade.</p></div>
     </details>
-    <details class="glass rounded-3xl p-5">
+    <details class="glass glowbox rounded-3xl p-5">
       <summary>Questions or feedback? <span class="plus text-xl mute">+</span></summary>
       <div class="fc"><p class="mute text-sm leading-relaxed mt-3">DeckOS is still in active development, so we read everything. Write to <a class="text-[#1A55FF] underline" href="mailto:dynamicdeckqueries@gmail.com">dynamicdeckqueries@gmail.com</a>.</p></div>
     </details>
@@ -279,22 +386,31 @@ details.glass.on::after{opacity:.6;transform:scale(1);animation:glowmorph 8s eas
     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Make your desktop feel alive.</h2>
     <a href="#download" class="pill inline-block mt-6 bg-[#0b1b3f] text-white font-semibold px-7 py-3 transition hover:scale-105 active:scale-95" style="transition-timing-function:cubic-bezier(.34,1.56,.64,1)">Choose your platform</a>
   </div>
-  <p class="mt-8">Queries: <a class="text-[#1A55FF] underline" href="mailto:dynamicdeckqueries@gmail.com">dynamicdeckqueries@gmail.com</a> · v6.2, in active development</p><p class="mt-2">© 2026 DeckOS. All rights reserved.</p>
+  <p class="mt-8">Queries: <a class="text-[#1A55FF] underline" href="mailto:dynamicdeckqueries@gmail.com">dynamicdeckqueries@gmail.com</a> · v7.1, in active development</p><p class="mt-2">© 2026 DeckOS. All rights reserved.</p>
 </footer>
 </main>
 
 <script>
 (function(){
   var isl=document.getElementById('island'),chips=document.querySelectorAll('#chips .chip'),order=['idle','music','call','timer','dock'];
-  var SZ={idle:40,music:92,call:92,timer:56,dock:112},orb=document.getElementById('orbit');function set(s){isl.dataset.s=s;orb.style.width=orb.style.height=SZ[s]+'px';chips.forEach(function(c){c.setAttribute('aria-pressed',c.dataset.s===s)})}
+  var hon=true,hw=document.getElementById('hw'),rdm=matchMedia('(prefers-reduced-motion:reduce)').matches,HP={idle:[8],music:[10,40,10],call:[40,70,40,70,40],timer:[16],dock:[6,30,6]};
+  function hap(p,el){if(!hon)return;if(navigator.vibrate){navigator.vibrate(p)}else{try{document.getElementById('hapl').click()}catch(e){}}
+    if(rdm)return;var t=el||isl;t.classList.remove('hap');void t.offsetWidth;t.classList.add('hap');hw.classList.add('buzz');clearTimeout(hw._t);hw._t=setTimeout(function(){hw.classList.remove('buzz')},450)}
+  document.addEventListener('pointerdown',function(e){var t=e.target.closest('.pod,.chip,.dtab button,summary,.orbit,.island,.app,.btn,.cta,nav a');if(!t)return;hap(t.classList.contains('orbit')?[10,30,18]:t.classList.contains('pod')?[14]:[8],t.classList.contains('orbit')?t:null)},true);
+  var SZ={idle:40,music:92,call:92,timer:56,dock:112},orb=document.getElementById('orbit');function set(s,q){isl.dataset.s=s;if(!q)hap(HP[s]);orb.style.width=orb.style.height=SZ[s]+'px';chips.forEach(function(c){c.setAttribute('aria-pressed',c.dataset.s===s)})}
   chips.forEach(function(c){c.addEventListener('click',function(){set(c.dataset.s);clearTimeout(auto)})});
   isl.addEventListener('click',function(e){if(e.target.closest('.app'))return;clearTimeout(auto);set(order[(order.indexOf(isl.dataset.s)+1)%order.length])});
   isl.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();isl.click()}});
-  var auto;new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)set('idle')})},{threshold:.4}).observe(document.getElementById('preview'));
+  var auto;new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)set('idle',true)})},{threshold:.4}).observe(document.getElementById('preview'));
   var t=1499,tm=document.getElementById('tm');
   setInterval(function(){t=t>0?t-1:1499;tm.textContent=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0')},1000);
   var D={island:'A solid black pill that lives at the top of your screen and morphs into whatever you need: media, calls, a focus timer, or your quick-launch dock.',orbit:'A second, circular island that sits right beside the main one, always the same size as it. It takes over background sub-tasks, like exports, syncs and backups, so the main island stays free for what you are doing. Its light breathes while work is running.'},dt=document.getElementById('dtxt');
-  function tabD(k){dt.textContent=D[k];document.querySelectorAll('#dtab button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.d===k)})}
+  var dbox=document.getElementById('dbox'),dclip=document.getElementById('dclip'),cur=null;
+  function tabD(k){document.querySelectorAll('#dtab button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.d===k)});dbox.classList.toggle('on',k==='orbit');
+    if(cur===null||rdm){dt.textContent=D[k];cur=k;return}if(k===cur)return;cur=k;var oh=dclip.offsetHeight;dt.getAnimations().forEach(function(a){a.cancel()});
+    dt.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(6px)'}],{duration:140,fill:'forwards'}).onfinish=function(){dt.textContent=D[k];var nh=dclip.offsetHeight;
+      dclip.animate([{height:oh+'px'},{height:nh+'px'}],{duration:700,easing:'cubic-bezier(.34,1.3,.64,1)'});dt.getAnimations().forEach(function(a){a.cancel()});
+      dt.animate([{opacity:0,transform:'translateY(-6px)'},{opacity:1,transform:'none'}],{duration:480,easing:'cubic-bezier(.34,1.3,.64,1)'})}}
   document.getElementById('dtab').addEventListener('click',function(e){var b=e.target.closest('button');if(b)tabD(b.dataset.d)});tabD('island');
   (function(){var rd=matchMedia('(prefers-reduced-motion:reduce)').matches,rib=document.querySelector('.ribbons svg'),drag=0;
     function setDrag(v){drag=v;rib.style.setProperty('--drag',drag+'px')}
@@ -304,8 +420,70 @@ details.glass.on::after{opacity:.6;transform:scale(1);animation:glowmorph 8s eas
           busy=fc.animate([{height:'0px',opacity:0},{height:h+'px',opacity:1}],{duration:700,easing:'cubic-bezier(.34,1.25,.64,1)'});busy.onfinish=function(){busy=null}}
         else{var h2=fc.offsetHeight;d.classList.remove('on');setDrag(drag-h2*.45);if(rd){d.open=false;return}
           busy=fc.animate([{height:h2+'px',opacity:1},{height:'0px',opacity:0}],{duration:480,easing:'cubic-bezier(.4,0,.2,1)'});busy.onfinish=function(){d.open=false;busy=null}}});});})();
+  (function(){var wrap=document.querySelector('.owrap'),FN={diwali:'Diwali',christmas:'Christmas',newyear:'New Year',halloween:'Halloween'},DW={2025:[10,20],2026:[11,8],2027:[10,29],2028:[10,17],2029:[11,5],2030:[10,26]};
+    function auto(){var d=new Date(),y=d.getFullYear(),m=d.getMonth()+1,n=d.getDate(),w=DW[y];
+      if(w&&Math.abs((new Date(y,m-1,n)-new Date(y,w[0]-1,w[1]))/864e5)<=3)return 'diwali';
+      if(m===12&&n<=26)return 'christmas';if((m===12&&n>=27)||(m===1&&n<=2))return 'newyear';if(m===10&&n>=24)return 'halloween';return ''}
+    function fs(m){var p=m==='auto'?auto():(m==='off'?'':m);wrap.dataset.fest=p;
+      document.querySelectorAll('#fest [data-f]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f===m)});
+      document.getElementById('festTxt').textContent=p?(m==='auto'?'Auto: it is '+FN[p]+' season, so the orbit is dressed for it.':'Previewing the '+FN[p]+' touch. Auto switches by date on its own.'):(m==='auto'?'Auto: no festival right now, so the island stays plain. Tap one to preview it.':'Festive touches are off.')}
+    document.getElementById('fest').addEventListener('click',function(e){var b=e.target.closest('[data-f]');if(b)fs(b.dataset.f)});fs('auto');
+    var ht=document.getElementById('hapT'),tx=document.getElementById('hapTxt');
+    function hx(){tx.textContent=!hon?'Live haptics are off.':(navigator.vibrate?'Live haptics: this device can vibrate, so taps buzz as you use the island.':'Live haptics: this device cannot vibrate, so you will see the pulse instead. Supported phones will buzz.')}
+    ht.addEventListener('click',function(){hon=!hon;ht.setAttribute('aria-pressed',hon);hx();if(hon)hap([20])});hx();
+    
+    
+  })();
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+})();
+</script>
+<script>
+/* ---- Edit these to switch on payments, the free-100 check and your wallpapers ---- */
+window.DD_CONFIG={
+  contactEmail:'dynamicdeckqueries@gmail.com',
+  paymentUrlINR:'',   // payment link for the Rs 99 option (e.g. Razorpay / Instamojo link)
+  paymentUrlUSD:'',   // payment link for the $3 option (e.g. Stripe / Gumroad / Lemon Squeezy link)
+  eligibilityUrl:'',  // optional endpoint: GET ?email=... returns {"eligible":true,"position":42,"remaining":58}
+  freeSpots:100,
+  spotsClaimed:null,  // set a number (0-100) to show a live "spots left" bar
+  wallpapers:[]       // up to 10 image paths, e.g. 'wallpapers/01.jpg'
+};
+</script>
+<script>
+(function(){
+  var C=window.DD_CONFIG,$=function(i){return document.getElementById(i)};
+  var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){}
+  var cur=/Kolkata|Calcutta/.test(tz)?'INR':'USD';
+  function mail(subj,body){return 'mailto:'+C.contactEmail+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body)}
+  function setCur(c){cur=c;$('price').textContent=c==='INR'?'\u20B999':'$3';
+    document.querySelectorAll('#curT button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.c===c)});
+    var u=c==='INR'?C.paymentUrlINR:C.paymentUrlUSD,lbl=c==='INR'?'Rs 99':'$3';
+    $('buy').href=u||mail('Dynamic Deck Premium ('+lbl+')','Hi, I would like to buy Dynamic Deck Premium ('+lbl+', one-time).');
+    if(u){$('buy').target='_blank';$('buy').rel='noopener'}else{$('buy').removeAttribute('target')}}
+  $('curT').addEventListener('click',function(e){var b=e.target.closest('button');if(b)setCur(b.dataset.c)});setCur(cur);
+  if(C.spotsClaimed!=null){var left=Math.max(0,C.freeSpots-C.spotsClaimed);$('spotsBar').hidden=false;$('spotsFill').style.width=Math.min(100,C.spotsClaimed/C.freeSpots*100)+'%';$('spotsTxt').textContent=left+' of '+C.freeSpots+' free spots left'}
+  // wallpapers
+  var G=['#1A55FF,#7aa2ff','#E6C59E,#f3d9b5','#0b1b3f,#1A55FF','#7aa2ff,#E6C59E','#1A55FF,#E6C59E','#0a3bd0,#7aa2ff','#c9a173,#E6C59E','#0b1b3f,#7aa2ff','#5f7fe0,#f3d9b5','#1A55FF,#0b1b3f'],w='';
+  for(var i=0;i<10;i++){var n=(i<9?'0':'')+(i+1),u=C.wallpapers&&C.wallpapers[i];
+    w+='<div class="wp" style="background:linear-gradient('+(120+i*17)+'deg,'+G[i]+')">'+(u?'<img loading="lazy" alt="Wallpaper '+n+'" src="'+u+'">':'')+'<span>'+n+'</span></div>'}
+  $('wps').innerHTML=w;
+  var pt='';for(var j=0;j<6;j++)pt+='<div class="wp" style="border-radius:12px;background:linear-gradient('+(140+j*23)+'deg,'+G[(j*3+2)%10]+');opacity:'+(1-j*.1)+'"></div>';$('plusTiles').innerHTML=pt;
+  // eligibility
+  var dlg=$('elig'),res=$('eligRes'),em=$('eligEmail');
+  function openD(){res.textContent='';res.style.color='';if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','')}
+  function closeD(){if(dlg.close)dlg.close();else dlg.removeAttribute('open')}
+  $('eligBtn').addEventListener('click',openD);$('eligClose').addEventListener('click',closeD);
+  dlg.addEventListener('click',function(e){if(e.target===dlg)closeD()});
+  function say(t,ok){res.textContent=t;res.style.color=ok===true?'#0a7a3c':ok===false?'#b42318':''}
+  $('eligForm').addEventListener('submit',function(e){e.preventDefault();var v=em.value.trim();if(!/^\S+@\S+\.\S+$/.test(v)){say('Please enter a valid email.',false);return}
+    if(!C.eligibilityUrl){say('Automatic checking is not switched on yet. We have opened an email so we can confirm your spot by hand.');
+      window.location.href=mail('Free Premium eligibility check','Hi, please check if I am one of the first '+C.freeSpots+' members.\n\nMy email: '+v);return}
+    say('Checking…');
+    fetch(C.eligibilityUrl+(C.eligibilityUrl.indexOf('?')>-1?'&':'?')+'email='+encodeURIComponent(v)).then(function(r){return r.json()}).then(function(d){
+      if(d&&d.eligible)say('You are in! '+(d.position?'You are member #'+d.position+' of the first '+C.freeSpots+'. ':'')+'Premium is free for you.',true);
+      else say('Sorry, you are not in the first '+C.freeSpots+' members'+(d&&d.remaining===0?', and all free spots are taken.':'.')+' Premium is '+(cur==='INR'?'Rs 99':'$3')+', one time.',false)
+    }).catch(function(){say('We could not check right now. Please email '+C.contactEmail+' and we will confirm by hand.',false)})});
 })();
 </script>
 </body>
